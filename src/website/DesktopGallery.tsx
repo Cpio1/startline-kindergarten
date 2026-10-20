@@ -7,6 +7,7 @@ import { ChevronDown, ChevronUp, Expand } from "lucide-react";
 import { gallery } from "@/config/content";
 import { Eyebrow } from "@/components/Decor";
 import { GalleryEmpty } from "@/components/GalleryEmpty";
+import { Balloon, Plane, Star } from "@/components/Kids";
 import { Lightbox } from "@/components/Lightbox";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
@@ -27,12 +28,15 @@ export function DesktopGallery({ images }: { images: SiteImage[] }) {
   const hidden = images.length - INITIAL;
 
   return (
-    <section id="gallery" aria-labelledby="gallery-title" className="py-24 xl:py-28">
+    <section id="gallery" aria-labelledby="gallery-title" className="relative py-24 xl:py-28">
+      <Plane className="float-soft absolute right-[8%] top-14 h-16 w-28" />
+      <Balloon className="float-soft absolute left-[3%] top-[40%] h-24 w-12" color="#FFD95E" />
+      <Star className="wiggle absolute right-[4%] bottom-24 h-8 w-8" color="#FF9C86" />
       <Container>
         <Reveal className="flex items-end justify-between gap-10">
           <div>
             <Eyebrow index="05">{gallery.eyebrow}</Eyebrow>
-            <h2 id="gallery-title" className="mt-5 text-[38px] font-medium xl:text-[42px]">
+            <h2 id="gallery-title" className="mt-5 text-[38px] font-black xl:text-[42px]">
               {gallery.title}
             </h2>
           </div>
@@ -78,7 +82,7 @@ export function DesktopGallery({ images }: { images: SiteImage[] }) {
                       type="button"
                       onClick={() => setOpen(i)}
                       aria-label={`Открыть фотографию ${i + 1} из ${images.length}`}
-                      className="group relative block w-full overflow-hidden"
+                      className="group relative block w-full overflow-hidden border-[5px] border-white bg-white shadow-card"
                       style={{ borderRadius: blobs[galleryShapes[i % galleryShapes.length]] }}
                     >
                       <span className="relative block w-full" style={{ aspectRatio: ratio(image) }}>

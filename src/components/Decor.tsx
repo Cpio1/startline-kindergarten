@@ -15,8 +15,17 @@ export function Trajectory({
   const end = d.trim().split(/[\sC,]+/).slice(-2).map(Number);
   return (
     <svg viewBox={viewBox} fill="none" className={cn("pointer-events-none", className)} aria-hidden="true">
-      <path d={d} stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeDasharray="2 9" className="track-flow" />
-      {dot && end.length === 2 && <circle cx={end[0]} cy={end[1]} r="5" fill="currentColor" />}
+      <path d={d} stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 10" className="track-flow" />
+      {dot && end.length === 2 && (
+        <path
+          transform={`translate(${end[0] - 9} ${end[1] - 9}) scale(.3)`}
+          d="M30 6l6.8 14.5 15.8 2-11.6 11 3 15.7L30 41.5 16 49.2l3-15.7-11.6-11 15.8-2Z"
+          fill="currentColor"
+          stroke="currentColor"
+          strokeWidth="5"
+          strokeLinejoin="round"
+        />
+      )}
     </svg>
   );
 }
@@ -46,18 +55,22 @@ export function StartTicks({ className }: { className?: string }) {
   );
 }
 
-/** Section label in the "01 — О нас" style, echoing the stages of a track. */
+const eyebrowTones = [
+  "bg-coral-soft text-coral-deep",
+  "bg-sun-soft text-[#b07800]",
+  "bg-sky-soft text-blue",
+  "bg-pistachio-soft text-leaf",
+  "bg-lilac-soft text-lilac-deep",
+];
+
+/** Section label: a soft coloured pill with a little star. `index` picks the colour. */
 export function Eyebrow({ index, children, className, tone = "blue" }: { index: string; children: React.ReactNode; className?: string; tone?: "blue" | "light" }) {
+  const colour = tone === "light" ? "bg-white/15 text-white" : eyebrowTones[(Number(index) - 1) % eyebrowTones.length];
   return (
-    <p
-      className={cn(
-        "inline-flex items-center gap-2.5 text-[12px] font-bold uppercase tracking-[0.16em]",
-        tone === "blue" ? "text-blue" : "text-pistachio",
-        className,
-      )}
-    >
-      <span className="font-heading tabular-nums">{index}</span>
-      <span className={cn("h-px w-7", tone === "blue" ? "bg-blue/40" : "bg-pistachio/50")} aria-hidden="true" />
+    <p className={cn("inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[14px] font-extrabold", colour, className)}>
+      <svg viewBox="0 0 60 60" className="h-4 w-4" aria-hidden="true">
+        <path d="M30 6l6.8 14.5 15.8 2-11.6 11 3 15.7L30 41.5 16 49.2l3-15.7-11.6-11 15.8-2Z" fill="currentColor" stroke="currentColor" strokeWidth="5" strokeLinejoin="round" />
+      </svg>
       {children}
     </p>
   );

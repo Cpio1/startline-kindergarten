@@ -1,48 +1,61 @@
 import { features } from "@/config/content";
-import { Eyebrow, Trajectory } from "@/components/Decor";
-import { LogoMark } from "@/components/Logo";
+import { Eyebrow } from "@/components/Decor";
+import { Blocks, Cloud, Heart, Rainbow, Star, Sun, Wave } from "@/components/Kids";
 import { Reveal } from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { Container } from "./Container";
 
-/** Bento layout: each card has its own proportions, tone and contour. */
+/** Bento layout: every card has its own colour, contour and little figure. */
 const layout = [
-  { span: "col-span-5 row-span-2", radius: "48px 48px 48px 16px", tone: "blue" },
-  { span: "col-span-4", radius: "16px 44px 44px 44px", tone: "lime-soft" },
-  { span: "col-span-3", radius: "44px 44px 16px 44px", tone: "milk" },
-  { span: "col-span-4", radius: "44px 16px 44px 44px", tone: "lime" },
-  { span: "col-span-3", radius: "44px 44px 44px 16px", tone: "blue-soft" },
-] as const;
+  { span: "col-span-5 row-span-2", radius: "48px 48px 48px 16px", card: "bg-blue text-white", icon: "bg-white/20 text-white", text: "text-white/80" },
+  { span: "col-span-4", radius: "16px 44px 44px 44px", card: "bg-sun-soft text-navy", icon: "bg-sun text-navy", text: "text-muted" },
+  { span: "col-span-3", radius: "44px 44px 16px 44px", card: "bg-coral-soft text-navy", icon: "bg-coral text-white", text: "text-muted" },
+  { span: "col-span-4", radius: "44px 16px 44px 44px", card: "bg-pistachio text-navy", icon: "bg-white/70 text-navy", text: "text-navy/70" },
+  { span: "col-span-3", radius: "44px 44px 44px 16px", card: "bg-sky-soft text-navy", icon: "bg-sky text-navy", text: "text-muted" },
+];
 
-const tones = {
-  blue: { card: "bg-blue text-white", icon: "bg-white/15 text-white", text: "text-white/75" },
-  "lime-soft": { card: "bg-pistachio-soft text-navy", icon: "bg-white text-blue", text: "text-muted" },
-  milk: { card: "bg-milk text-navy", icon: "bg-white text-blue", text: "text-muted" },
-  lime: { card: "bg-pistachio text-navy", icon: "bg-white/60 text-navy", text: "text-navy/70" },
-  "blue-soft": { card: "bg-blue-soft text-navy", icon: "bg-white text-blue", text: "text-muted" },
-};
+function CardFigure({ index }: { index: number }) {
+  switch (index) {
+    case 0:
+      return (
+        <>
+          <Rainbow className="absolute -right-6 top-8 w-56 opacity-95" />
+          <Star className="wiggle absolute right-10 top-[46%] h-9 w-9" />
+          <Star className="wiggle absolute right-32 top-[56%] h-5 w-5" color="#BFE36D" style={{ animationDelay: "-2s" }} />
+        </>
+      );
+    case 1:
+      return <Sun className="absolute -right-5 -top-5 h-24 w-24" face={false} />;
+    case 2:
+      return <Blocks className="absolute -right-2 top-3 h-16 w-20" />;
+    case 3:
+      return <Heart className="float-soft absolute right-6 top-6 h-12 w-14" color="#FFFFFF" />;
+    default:
+      return <Cloud className="drift absolute -right-4 top-5 h-12 w-20" />;
+  }
+}
 
 export function DesktopFeatures() {
   return (
-    <section id="features" aria-labelledby="features-title" className="px-5">
-      <div className="mx-auto max-w-[1340px] rounded-[56px] bg-white py-20 xl:py-24">
+    <section id="features" aria-labelledby="features-title" className="relative">
+      <Wave fill="#FFFFFF" />
+      <div className="bg-white py-20 xl:py-24">
         <Container>
           <Reveal className="flex items-end justify-between gap-10">
             <div>
               <Eyebrow index="02">Наши преимущества</Eyebrow>
-              <h2 id="features-title" className="mt-5 max-w-[560px] text-[38px] font-medium xl:text-[42px]">
+              <h2 id="features-title" className="mt-5 max-w-[560px] text-[40px] font-black xl:text-[44px]">
                 Всё, что важно для уверенного старта
               </h2>
             </div>
-            <p className="max-w-[380px] pb-1.5 text-[16px] text-muted">
-              Понятные условия, на которые можно опереться каждый день — с первого дня в детском саду.
+            <p className="max-w-[380px] pb-1.5 text-[16.5px] text-muted">
+              Понятные условия, на которые можно опереться каждый день{" "}— с первого дня в детском саду.
             </p>
           </Reveal>
 
-          <div className="mt-12 grid auto-rows-[minmax(200px,auto)] grid-cols-12 gap-4">
+          <div className="mt-12 grid auto-rows-[minmax(210px,auto)] grid-cols-12 gap-4">
             {features.map((feature, i) => {
-              const { span, radius, tone } = layout[i];
-              const t = tones[tone];
+              const l = layout[i];
               const Icon = feature.icon;
               const hero = i === 0;
               return (
@@ -50,47 +63,31 @@ export function DesktopFeatures() {
                   key={feature.title}
                   as="article"
                   delay={i * 0.06}
-                  style={{ borderRadius: radius }}
+                  style={{ borderRadius: l.radius }}
                   className={cn(
-                    "group relative isolate flex flex-col overflow-hidden p-7 transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-soft",
-                    span,
-                    t.card,
+                    "group relative isolate flex flex-col overflow-hidden p-7 transition-transform duration-500 hover:-translate-y-1.5 hover:rotate-[-0.6deg]",
+                    l.span,
+                    l.card,
                   )}
                 >
-                  <span className={cn("flex h-12 w-12 items-center justify-center rounded-2xl", t.icon)}>
+                  <CardFigure index={i} />
+                  <span className={cn("relative flex h-12 w-12 items-center justify-center rounded-2xl", l.icon)}>
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </span>
-                  <p
-                    className={cn(
-                      "mt-auto pt-8 font-heading font-semibold leading-none tracking-tight",
-                      hero ? "text-[76px]" : "text-[44px]",
-                    )}
-                  >
+                  <p className={cn("relative mt-auto pt-8 font-heading font-black leading-none", hero ? "text-[80px]" : "text-[46px]")}>
                     {feature.value}
                   </p>
-                  <h3 className={cn("mt-4 font-sans font-bold tracking-normal", hero ? "text-[22px]" : "text-[17px]")}>
+                  <h3 className={cn("relative mt-3 font-sans font-extrabold tracking-normal", hero ? "text-[24px]" : "text-[18px]")}>
                     {feature.title}
                   </h3>
-                  <p className={cn("mt-2 max-w-[340px] text-[14.5px] leading-relaxed", t.text)}>{feature.text}</p>
-                  {hero && (
-                    <>
-                      <Trajectory
-                        className="absolute right-6 top-10 h-[150px] w-[250px] text-pistachio"
-                        d="M6 140C60 70 140 24 244 16"
-                        viewBox="0 0 250 150"
-                      />
-                      <LogoMark className="absolute -right-10 -bottom-10 h-44 w-44 opacity-10 transition-transform duration-700 group-hover:rotate-6" />
-                    </>
-                  )}
-                  {tone === "lime" && (
-                    <span className="absolute -right-6 -top-6 h-32 w-32 rounded-full border-[14px] border-white/35" aria-hidden="true" />
-                  )}
+                  <p className={cn("relative mt-2 max-w-[340px] text-[15px] leading-relaxed", l.text)}>{feature.text}</p>
                 </Reveal>
               );
             })}
           </div>
         </Container>
       </div>
+      <Wave fill="#FFFFFF" flip />
     </section>
   );
 }

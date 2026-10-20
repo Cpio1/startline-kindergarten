@@ -3,7 +3,7 @@ import { finalCta } from "@/config/content";
 import { mapUrl, site } from "@/config/site";
 import { contactRows } from "@/components/contacts";
 import { Eyebrow, Trajectory } from "@/components/Decor";
-import { LogoMark } from "@/components/Logo";
+import { Balloon, Cloud, Star, Sun } from "@/components/Kids";
 import { MapArt } from "@/components/MapArt";
 import { Reveal } from "@/components/Reveal";
 import { btn } from "@/components/ui";
@@ -17,22 +17,22 @@ export function DesktopContacts() {
         <Container>
           <Reveal>
             <Eyebrow index="07">Контакты</Eyebrow>
-            <h2 id="contacts-title" className="mt-5 text-[38px] font-medium xl:text-[42px]">
+            <h2 id="contacts-title" className="mt-5 text-[38px] font-black xl:text-[42px]">
               Приходите знакомиться
             </h2>
           </Reveal>
           <div className="mt-12 grid grid-cols-12 gap-5">
             <Reveal className="col-span-5 rounded-[44px_44px_44px_14px] bg-white p-8 shadow-card">
-              <p className="font-heading text-[20px] font-semibold">{site.name}</p>
+              <p className="font-heading text-[20px] font-black">{site.name}</p>
               <ul className="mt-6 divide-y divide-line">
-                {contactRows.map(({ key, icon: Icon, label, value, href, external }) => {
+                {contactRows.map(({ key, icon: Icon, label, value, href, external, tone }) => {
                   const body = (
                     <>
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-blue-soft text-blue">
+                      <span className={cn("flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl", tone)}>
                         <Icon className="h-[18px] w-[18px]" />
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block text-[12.5px] font-semibold uppercase tracking-[0.1em] text-muted">{label}</span>
+                        <span className="block text-[13.5px] font-bold text-muted">{label}</span>
                         <span className="block text-[16.5px] font-bold text-navy">{value}</span>
                       </span>
                       {href && <ArrowUpRight className="h-5 w-5 text-navy/30 transition group-hover:text-blue" aria-hidden="true" />}
@@ -61,12 +61,12 @@ export function DesktopContacts() {
               <MapArt className="absolute inset-0 h-full w-full" />
               <div className="absolute inset-x-8 bottom-8 flex items-center justify-between gap-6 rounded-[28px] bg-white/95 p-6 shadow-soft backdrop-blur">
                 <div className="flex items-center gap-4">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pistachio text-navy">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-coral text-white">
                     <Map className="h-5 w-5" aria-hidden="true" />
                   </span>
                   <div>
                     <p className="text-[17px] font-bold">{site.address}</p>
-                    <p className="text-[13.5px] text-muted">Маршрут и точка на карте — в 2GIS</p>
+                    <p className="text-[14px] text-muted">Маршрут и точка на карте — в 2GIS</p>
                   </div>
                 </div>
                 <a href={mapUrl} target="_blank" rel="noopener noreferrer" className={cn(btn.primary, "h-12 shrink-0 px-6 text-[14.5px]")}>
@@ -87,9 +87,15 @@ export function DesktopContacts() {
             viewBox="0 0 420 160"
             dot={false}
           />
-          <LogoMark className="absolute -right-16 -top-16 h-72 w-72 rotate-12 opacity-[0.12]" />
+          <Cloud className="drift absolute left-[8%] top-10 h-16 w-28 opacity-95" />
+          <Cloud className="drift absolute right-[22%] bottom-8 h-10 w-16 opacity-80" style={{ animationDelay: "-6s" }} />
+          <Sun className="absolute -right-6 -top-8 h-40 w-40" />
+          <Balloon className="float-soft absolute left-[16%] bottom-6 h-28 w-14" color="#FF9C86" />
+          <Balloon className="float-soft absolute left-[21%] bottom-12 h-24 w-12" color="#BFE36D" style={{ animationDelay: "-2s" }} />
+          <Balloon className="float-soft absolute right-[12%] bottom-10 h-24 w-12" color="#B9A6F2" style={{ animationDelay: "-4s" }} />
+          <Star className="wiggle absolute right-[30%] top-10 h-8 w-8" />
           <Container className="relative">
-            <h2 id="cta-title" className="mx-auto max-w-[760px] text-[44px] font-medium xl:text-[50px]">
+            <h2 id="cta-title" className="mx-auto max-w-[760px] text-[44px] font-black xl:text-[50px]">
               {finalCta.title}
             </h2>
             <p className="mx-auto mt-5 max-w-[480px] text-[17px] text-white/75">{finalCta.text}</p>
@@ -98,7 +104,7 @@ export function DesktopContacts() {
                 <Phone className="h-[18px] w-[18px]" aria-hidden="true" />
                 Позвонить нам
               </a>
-              <a href={`tel:${site.phone.tel}`} className="font-heading text-[18px] font-semibold text-white/90 underline-offset-4 hover:underline">
+              <a href={`tel:${site.phone.tel}`} className="font-heading text-[18px] font-black text-white/90 underline-offset-4 hover:underline">
                 {site.phone.display}
               </a>
             </div>

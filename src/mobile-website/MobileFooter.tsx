@@ -1,14 +1,16 @@
 import { nav } from "@/config/site";
 import { contactRows } from "@/components/contacts";
+import { Wave } from "@/components/Kids";
 import { Logo } from "@/components/Logo";
 import { mid } from "./ids";
 import { MobileContainer } from "./MobileContainer";
 
 export function MobileFooter() {
   return (
-    <footer className="mt-2.5 bg-navy pb-[max(28px,env(safe-area-inset-bottom))] pt-10 text-white">
+    <footer className="relative mt-8 bg-navy pb-[max(28px,env(safe-area-inset-bottom))] pt-10 text-white">
+      <Wave fill="#243453" className="absolute inset-x-0 top-0 -translate-y-full" />
       <MobileContainer>
-        <Logo tone="light" className="[&_svg]:h-8 [&_svg]:w-8 [&>span:last-child]:text-[15px]" />
+        <Logo tone="light" className="[&_svg]:h-8 [&_svg]:w-8 [&>span:last-child]:text-[18px]" />
         <nav aria-label="Навигация в подвале" className="mt-7">
           <ul className="flex flex-wrap gap-x-5 gap-y-2.5 text-[14px]">
             {nav.map((item) => (

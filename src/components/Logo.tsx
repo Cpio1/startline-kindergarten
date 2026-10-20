@@ -23,17 +23,21 @@ export function LogoMark({ className }: { className?: string }) {
   );
 }
 
+/** Each letter in its own toy colour — like blocks on a kindergarten shelf. */
+const letterColors = ["#3157D5", "#EE6A4F", "#F0A500", "#7FB83A", "#8C6FE0", "#3157D5", "#EE6A4F", "#F0A500", "#7FB83A"];
+const lightColors = ["#FFFFFF", "#FF9C86", "#FFD95E", "#BFE36D", "#B9A6F2", "#8FCBF5", "#FF9C86", "#FFD95E", "#BFE36D"];
+
 export function Logo({ className, tone = "dark" }: { className?: string; tone?: "dark" | "light" }) {
+  const colors = tone === "dark" ? letterColors : lightColors;
   return (
     <span className={cn("inline-flex items-center gap-2.5", className)}>
       <LogoMark className="h-9 w-9 shrink-0" />
-      <span
-        className={cn(
-          "font-heading text-[17px] font-semibold tracking-[0.02em]",
-          tone === "dark" ? "text-navy" : "text-white",
-        )}
-      >
-        START<span className={tone === "dark" ? "text-blue" : "text-pistachio"}>LINE</span>
+      <span className="font-heading text-[21px] font-black leading-none tracking-[0.01em]" aria-label="STARTLINE">
+        {"STARTLINE".split("").map((char, i) => (
+          <span key={i} aria-hidden="true" style={{ color: colors[i] }} className={i % 2 ? "inline-block translate-y-[1px]" : "inline-block -translate-y-[1px]"}>
+            {char}
+          </span>
+        ))}
       </span>
     </span>
   );

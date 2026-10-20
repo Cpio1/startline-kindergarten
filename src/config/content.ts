@@ -7,11 +7,11 @@ export const hero = {
   title: "первый шаг к большому будущему",
   subtitle: "Место, где каждый день наполнен открытиями, заботой и радостью детства.",
   facts: [
-    { icon: Baby, value: site.ages.display, label: "возраст детей" },
-    { icon: Users, value: `${site.groups} группы`, label: "в детском саду" },
-    { icon: UtensilsCrossed, value: `${site.meals}-разовое`, label: "питание" },
-    { icon: Clock3, value: site.hours.display, label: "режим работы" },
-  ] satisfies { icon: LucideIcon; value: string; label: string }[],
+    { icon: Baby, value: site.ages.display, label: "возраст детей", tone: "bg-coral-soft text-coral-deep" },
+    { icon: Users, value: `${site.groups} группы`, label: "в детском саду", tone: "bg-sky-soft text-blue" },
+    { icon: UtensilsCrossed, value: `${site.meals}-разовое`, label: "питание", tone: "bg-pistachio-soft text-leaf" },
+    { icon: Clock3, value: site.hours.display, label: "режим работы", tone: "bg-sun-soft text-[#b07800]" },
+  ] satisfies { icon: LucideIcon; value: string; label: string; tone: string }[],
 };
 
 export const about = {
@@ -20,12 +20,12 @@ export const about = {
   lead: "STARTLINE — детский сад, где ребёнок чувствует себя спокойно и уверенно, а каждый день приносит что-то новое.",
   text: "Мы создаём тёплую и комфортную среду, в которой малыши знакомятся с окружающим миром, учатся общаться, дружить и открывать собственные возможности — в своём темпе и с поддержкой взрослых.",
   values: [
-    { icon: HeartHandshake, title: "Забота", text: "Внимание к каждому ребёнку" },
-    { icon: Sun, title: "Комфорт", text: "Уютная и спокойная среда" },
-    { icon: Leaf, title: "Мир вокруг", text: "Открытия каждый день" },
-    { icon: MessagesSquare, title: "Общение", text: "Дружба и развитие" },
-    { icon: Smile, title: "Радость", text: "Счастливое детство" },
-  ] satisfies { icon: LucideIcon; title: string; text: string }[],
+    { icon: HeartHandshake, title: "Забота", text: "Внимание к каждому ребёнку", tone: "bg-coral-soft text-coral-deep" },
+    { icon: Sun, title: "Комфорт", text: "Уютная и спокойная среда", tone: "bg-sun-soft text-[#b07800]" },
+    { icon: Leaf, title: "Мир вокруг", text: "Открытия каждый день", tone: "bg-pistachio-soft text-leaf" },
+    { icon: MessagesSquare, title: "Общение", text: "Дружба и развитие", tone: "bg-sky-soft text-blue" },
+    { icon: Smile, title: "Радость", text: "Счастливое детство", tone: "bg-lilac-soft text-lilac-deep" },
+  ] satisfies { icon: LucideIcon; title: string; text: string; tone: string }[],
 };
 
 export type Feature = {

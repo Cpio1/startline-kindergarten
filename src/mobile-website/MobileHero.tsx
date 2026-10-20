@@ -2,6 +2,7 @@ import { ArrowDown, Phone } from "lucide-react";
 import { hero } from "@/config/content";
 import { site } from "@/config/site";
 import { Blob, Trajectory } from "@/components/Decor";
+import { Cloud, Squiggle, Star, Sun } from "@/components/Kids";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { btn } from "@/components/ui";
@@ -19,17 +20,19 @@ function frameRatio(image: SiteImage | null) {
 export function MobileHero({ image }: { image: SiteImage | null }) {
   return (
     <section id={mid("top")} aria-labelledby="m-hero-title" className="relative overflow-hidden pb-12 pt-[calc(84px+env(safe-area-inset-top))]">
-      <Blob variant={2} className="absolute -right-24 -top-16 h-[220px] w-[240px] text-blue-soft/80" />
+      <Blob variant={2} className="absolute -right-24 -top-16 h-[220px] w-[240px] text-sky-soft" />
+      <Cloud className="drift absolute right-4 top-[calc(76px+env(safe-area-inset-top))] h-9 w-14" />
       <MobileContainer className="relative">
         <Reveal y={14}>
           <p className="inline-flex items-center gap-2 rounded-full border border-navy/10 bg-white/75 py-1 pl-1 pr-3 text-[12px] font-semibold text-navy/80">
-            <span className="rounded-full bg-pistachio px-2 py-0.5 text-[11px] font-bold text-navy">Детский сад</span>
+            <span className="rounded-full bg-sun px-2 py-0.5 text-[11.5px] font-extrabold text-navy">Детский сад</span>
             {site.ages.display}
           </p>
-          <h1 id="m-hero-title" className="mt-4 text-[clamp(27px,8.3vw,36px)] font-medium leading-[1.14]">
-            <span className="block font-semibold text-blue">STARTLINE —</span>
+          <h1 id="m-hero-title" className="mt-4 text-[clamp(27px,8.3vw,36px)] font-black leading-[1.14]">
+            <span className="block font-black text-blue">STARTLINE —</span>
             {hero.title}
           </h1>
+          <Squiggle className="mt-2 h-3 w-32" color="#FF9C86" />
           <p className="mt-3.5 text-[15px] leading-relaxed text-muted">{hero.subtitle}</p>
         </Reveal>
 
@@ -46,7 +49,7 @@ export function MobileHero({ image }: { image: SiteImage | null }) {
 
         <Reveal y={18} delay={0.1} className="relative mt-9">
           <Trajectory
-            className="absolute -top-7 left-6 z-10 h-[56px] w-[140px] text-blue/45"
+            className="absolute -top-7 left-14 z-10 h-[56px] w-[140px] text-coral"
             d="M4 52C30 22 70 8 134 6"
             viewBox="0 0 140 56"
           />
@@ -59,10 +62,12 @@ export function MobileHero({ image }: { image: SiteImage | null }) {
             position={site.heroFocus}
             radius="200px 200px 28px 110px"
             aspect={frameRatio(image)}
-            className="relative w-full bg-milk-deep shadow-soft"
+            className="relative w-full border-[5px] border-white bg-milk-deep shadow-soft"
           />
-          <div className="absolute -right-1 top-5 flex h-[76px] w-[76px] flex-col items-center justify-center rounded-full bg-pistachio text-navy shadow-card">
-            <span className="font-heading text-[26px] font-semibold leading-none">{site.meals}</span>
+          <Sun className="absolute -left-3 -top-6 z-10 h-[72px] w-[72px]" />
+          <Star className="wiggle absolute -right-1 bottom-12 z-10 h-7 w-7" color="#B9A6F2" />
+          <div className="absolute -right-1 top-5 flex h-[76px] w-[76px] rotate-6 flex-col items-center justify-center rounded-[38%_62%_55%_45%/50%_45%_55%_50%] bg-pistachio text-navy shadow-card">
+            <span className="font-heading text-[26px] font-black leading-none">{site.meals}</span>
             <span className="mt-0.5 text-center text-[8.5px] font-bold uppercase leading-tight tracking-wide">
               разовое
               <br />
@@ -73,9 +78,9 @@ export function MobileHero({ image }: { image: SiteImage | null }) {
 
         <Reveal y={14} delay={0.14}>
           <ul className="relative -mt-8 mx-2 grid grid-cols-2 gap-px overflow-hidden rounded-[22px] bg-[#e4e6ea] shadow-soft">
-            {hero.facts.map(({ icon: Icon, value, label }) => (
+            {hero.facts.map(({ icon: Icon, value, label, tone }) => (
               <li key={label} className="flex items-center gap-2.5 bg-white px-3 py-3 max-[399px]:px-3.5">
-                <span className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-[11px] bg-blue-soft text-blue min-[400px]:flex">
+                <span className={cn("hidden h-8 w-8 shrink-0 items-center justify-center rounded-[11px] min-[400px]:flex", tone)}>
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <span className="min-w-0 leading-tight">

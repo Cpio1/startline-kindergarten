@@ -40,14 +40,14 @@ export function Photo({ image, alt, className, radius, sizes, priority, position
         <div
           role="img"
           aria-label={`${alt} — фотография скоро появится`}
-          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(120%_90%_at_20%_10%,#eef6d8_0%,transparent_55%),radial-gradient(100%_80%_at_90%_100%,#dfe6fb_0%,transparent_60%)] bg-milk-deep"
+          className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[radial-gradient(110%_90%_at_15%_10%,#fff4d2_0%,transparent_55%),radial-gradient(100%_80%_at_95%_100%,#e4f3fd_0%,transparent_60%),radial-gradient(80%_60%_at_90%_10%,#ffe7e0_0%,transparent_60%)] bg-milk"
         >
           <span
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(circle,rgb(49_87_213/0.2)_1.3px,transparent_1.6px)] bg-[length:22px_22px]"
+            className="absolute inset-0 bg-[radial-gradient(circle,rgb(255_156_134/0.35)_1.6px,transparent_1.9px)] bg-[length:24px_24px]"
           />
           <LogoMark className="relative h-11 w-11 opacity-90" />
-          <span className="relative inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-[12px] font-semibold text-muted backdrop-blur">
+          <span className="relative inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1 text-[12.5px] font-bold text-muted backdrop-blur">
             <ImageIcon className="h-3.5 w-3.5" aria-hidden="true" />
             Фото скоро появится
           </span>

@@ -2,6 +2,7 @@ import { ArrowUpRight, FileText, FolderOpen, Phone } from "lucide-react";
 import { docs } from "@/config/content";
 import { documents, site } from "@/config/site";
 import { Eyebrow } from "@/components/Decor";
+import { Cloud } from "@/components/Kids";
 import { Reveal } from "@/components/Reveal";
 import { mid } from "./ids";
 import { MobileContainer } from "./MobileContainer";
@@ -9,13 +10,14 @@ import { MobileContainer } from "./MobileContainer";
 export function MobileDocuments() {
   return (
     <section id={mid("documents")} aria-labelledby="m-documents-title" className="px-2.5">
-      <div className="mx-auto max-w-[660px] rounded-[32px] bg-milk-deep py-12">
+      <div className="relative mx-auto max-w-[660px] overflow-hidden rounded-[32px] bg-sun-soft py-12">
+        <Cloud className="drift absolute right-3 top-5 h-9 w-14" />
         <MobileContainer className="px-[14px]">
           <Reveal y={14}>
-            <Eyebrow index="06" className="text-[11px]">
+            <Eyebrow index="06" className="px-3 py-1 text-[13px]">
               {docs.eyebrow}
             </Eyebrow>
-            <h2 id="m-documents-title" className="mt-3 text-[clamp(23px,7vw,28px)] font-medium">
+            <h2 id="m-documents-title" className="mt-3 text-[clamp(23px,7vw,28px)] font-black">
               {docs.title}
             </h2>
           </Reveal>
@@ -46,7 +48,7 @@ export function MobileDocuments() {
                 })}
               </ul>
             ) : (
-              <div className="rounded-[26px_26px_26px_10px] border-2 border-dashed border-navy/12 bg-white/60 p-5">
+              <div className="rounded-[26px_26px_26px_10px] border-[3px] border-dashed border-sun bg-white/80 p-5">
                 <div className="flex items-center gap-3">
                   <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white text-blue shadow-card">
                     <FileText className="h-5 w-5" aria-hidden="true" />

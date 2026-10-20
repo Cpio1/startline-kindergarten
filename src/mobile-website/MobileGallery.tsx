@@ -7,6 +7,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { gallery } from "@/config/content";
 import { Eyebrow } from "@/components/Decor";
 import { GalleryEmpty } from "@/components/GalleryEmpty";
+import { Plane } from "@/components/Kids";
 import { Lightbox } from "@/components/Lightbox";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
@@ -34,14 +35,15 @@ export function MobileGallery({ images }: { images: SiteImage[] }) {
   const hidden = images.length - INITIAL;
 
   return (
-    <section id={mid("gallery")} aria-labelledby="m-gallery-title" className="py-14">
+    <section id={mid("gallery")} aria-labelledby="m-gallery-title" className="relative py-14">
+      <Plane className="float-soft absolute right-3 top-6 h-10 w-16" />
       <MobileContainer>
         <Reveal y={14} className="flex items-end justify-between gap-4">
           <div>
-            <Eyebrow index="05" className="text-[11px]">
+            <Eyebrow index="05" className="px-3 py-1 text-[13px]">
               {gallery.eyebrow}
             </Eyebrow>
-            <h2 id="m-gallery-title" className="mt-3 text-[clamp(23px,7vw,28px)] font-medium">
+            <h2 id="m-gallery-title" className="mt-3 text-[clamp(23px,7vw,28px)] font-black">
               {gallery.title}
             </h2>
           </div>
@@ -75,7 +77,7 @@ export function MobileGallery({ images }: { images: SiteImage[] }) {
                       type="button"
                       onClick={() => setOpen(i)}
                       aria-label={`Открыть фотографию ${i + 1} из ${images.length}`}
-                      className="relative block aspect-[0.9] w-full overflow-hidden bg-milk-deep"
+                      className="relative block aspect-[0.9] w-full overflow-hidden border-4 border-white bg-milk-deep shadow-card"
                       style={{ borderRadius: shapes[i % shapes.length] }}
                     >
                       <Image

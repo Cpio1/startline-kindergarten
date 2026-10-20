@@ -1,19 +1,14 @@
 import type { Metadata, Viewport } from "next";
-import { Manrope, Unbounded } from "next/font/google";
+import { Nunito } from "next/font/google";
 import { Providers } from "@/components/Providers";
 import { meta, SITE_URL, site } from "@/config/site";
 import "./globals.css";
 
-const heading = Unbounded({
+// Rounded, friendly letterforms for a kindergarten; one family keeps the page light.
+const nunito = Nunito({
   subsets: ["latin", "cyrillic"],
-  weight: ["500", "600"],
-  variable: "--font-unbounded",
-  display: "swap",
-});
-const body = Manrope({
-  subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-manrope",
+  weight: ["400", "600", "700", "800", "900"],
+  variable: "--font-nunito",
   display: "swap",
 });
 
@@ -60,7 +55,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ru" className={`${heading.variable} ${body.variable}`}>
+    <html lang="ru" className={nunito.variable}>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <Providers>{children}</Providers>

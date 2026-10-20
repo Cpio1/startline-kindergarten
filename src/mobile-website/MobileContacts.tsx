@@ -3,7 +3,7 @@ import { finalCta } from "@/config/content";
 import { mapUrl, site } from "@/config/site";
 import { contactRows } from "@/components/contacts";
 import { Eyebrow, Trajectory } from "@/components/Decor";
-import { LogoMark } from "@/components/Logo";
+import { Balloon, Cloud, Sun } from "@/components/Kids";
 import { MapArt } from "@/components/MapArt";
 import { Reveal } from "@/components/Reveal";
 import { btn } from "@/components/ui";
@@ -17,23 +17,23 @@ export function MobileContacts() {
       <section id={mid("contacts")} aria-labelledby="m-contacts-title" className="py-14">
         <MobileContainer>
           <Reveal y={14}>
-            <Eyebrow index="07" className="text-[11px]">
+            <Eyebrow index="07" className="px-3 py-1 text-[13px]">
               Контакты
             </Eyebrow>
-            <h2 id="m-contacts-title" className="mt-3 text-[clamp(23px,7vw,28px)] font-medium">
+            <h2 id="m-contacts-title" className="mt-3 text-[clamp(23px,7vw,28px)] font-black">
               Приходите знакомиться
             </h2>
           </Reveal>
           <Reveal y={12}>
             <ul className="mt-6 overflow-hidden rounded-[26px_26px_26px_10px] bg-white shadow-card">
-              {contactRows.map(({ key, icon: Icon, label, value, href, external }, i) => {
+              {contactRows.map(({ key, icon: Icon, label, value, href, external, tone }, i) => {
                 const body = (
                   <>
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-soft text-blue">
+                    <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-xl", tone)}>
                       <Icon className="h-4 w-4" />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block text-[11px] font-semibold uppercase tracking-[0.1em] text-muted">{label}</span>
+                      <span className="block text-[12.5px] font-bold text-muted">{label}</span>
                       <span className="block text-[15px] font-bold text-navy">{value}</span>
                     </span>
                     {href && <ArrowUpRight className="h-[18px] w-[18px] shrink-0 text-navy/30" aria-hidden="true" />}
@@ -62,7 +62,8 @@ export function MobileContacts() {
             <div className="absolute inset-x-3 bottom-3 flex items-center justify-between gap-3 rounded-[18px] bg-white/95 p-3 pl-4 backdrop-blur">
               <p className="min-w-0 truncate text-[13px] font-semibold text-navy">{site.address}</p>
               <a href={mapUrl} target="_blank" rel="noopener noreferrer" className={cn(btn.primary, "h-10 shrink-0 px-4 text-[13.5px]")}>
-                Открыть в 2GIS
+                <span className="min-[400px]:hidden">2GIS</span>
+                <span className="hidden min-[400px]:inline">Открыть в 2GIS</span>
                 <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
               </a>
             </div>
@@ -72,14 +73,17 @@ export function MobileContacts() {
 
       <section aria-labelledby="m-cta-title" className="px-2.5 pb-2.5">
         <Reveal y={14} className="relative mx-auto max-w-[660px] overflow-hidden rounded-[32px] bg-blue px-5 py-12 text-center text-white">
-          <LogoMark className="absolute -right-10 -top-10 h-36 w-36 rotate-12 opacity-[0.12]" />
+          <Sun className="absolute -right-5 -top-6 h-20 w-20" />
+          <Cloud className="drift absolute left-3 top-5 h-8 w-14" />
+          <Balloon className="float-soft absolute bottom-5 left-3 h-16 w-8" color="#FF9C86" />
+          <Balloon className="float-soft absolute bottom-8 right-4 h-14 w-7" color="#BFE36D" style={{ animationDelay: "-3s" }} />
           <Trajectory
             className="absolute -bottom-4 -left-6 h-[70px] w-[200px] text-pistachio/60"
             d="M4 86C50 46 120 16 214 12"
             viewBox="0 0 220 90"
             dot={false}
           />
-          <h2 id="m-cta-title" className="relative mx-auto max-w-[420px] text-[clamp(23px,7.2vw,30px)] font-medium">
+          <h2 id="m-cta-title" className="relative mx-auto max-w-[420px] text-[clamp(23px,7.2vw,30px)] font-black">
             {finalCta.title}
           </h2>
           <p className="relative mx-auto mt-3 max-w-[340px] text-[14px] text-white/75">{finalCta.text}</p>
@@ -87,7 +91,7 @@ export function MobileContacts() {
             <Phone className="h-4 w-4" aria-hidden="true" />
             Позвонить нам
           </a>
-          <p className="relative mt-3 font-heading text-[14px] font-semibold text-white/85">{site.phone.display}</p>
+          <p className="relative mt-3 font-heading text-[14px] font-black text-white/85">{site.phone.display}</p>
         </Reveal>
       </section>
     </>

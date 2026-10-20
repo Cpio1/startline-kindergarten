@@ -1,7 +1,8 @@
-import { ArrowDown, Phone } from "lucide-react";
+import { ArrowDown, Clock3, Phone } from "lucide-react";
 import { hero } from "@/config/content";
 import { site } from "@/config/site";
-import { Blob, StartTicks, Trajectory } from "@/components/Decor";
+import { Blob, Trajectory } from "@/components/Decor";
+import { Balloon, Cloud, Confetti, Rainbow, Squiggle, Star, Sun } from "@/components/Kids";
 import { Photo } from "@/components/Photo";
 import { Reveal } from "@/components/Reveal";
 import { btn } from "@/components/ui";
@@ -18,20 +19,24 @@ function frameRatio(image: SiteImage | null) {
 export function DesktopHero({ image }: { image: SiteImage | null }) {
   return (
     <section id="top" aria-labelledby="hero-title" className="relative overflow-hidden pb-24 pt-10 xl:pt-14">
-      <Blob variant={2} className="absolute -left-40 -top-32 h-[420px] w-[460px] text-blue-soft/70" />
+      <Blob variant={2} className="absolute -left-40 -top-32 h-[420px] w-[460px] text-sky-soft" />
+      <Confetti className="opacity-90" />
+      <Cloud className="drift absolute left-[41%] top-6 h-14 w-24" />
+      <Star className="wiggle absolute left-[46%] top-[62%] h-6 w-6" color="#B9A6F2" />
       <Container className="relative grid grid-cols-12 items-center gap-10">
         <div className="col-span-6 xl:pr-4">
           <Reveal>
             <p className="inline-flex items-center gap-3 rounded-full border border-navy/10 bg-white/70 py-1.5 pl-2 pr-4 text-[13px] font-semibold text-navy/80 backdrop-blur">
-              <span className="rounded-full bg-pistachio px-2.5 py-0.5 text-[12px] font-bold text-navy">Детский сад</span>
+              <span className="rounded-full bg-sun px-2.5 py-0.5 text-[12.5px] font-extrabold text-navy">Детский сад</span>
               {site.ages.display} · {site.groups} группы
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <h1 id="hero-title" className="mt-6 text-[46px] font-medium text-navy xl:text-[54px]">
-              <span className="block font-semibold text-blue">STARTLINE —</span>
+            <h1 id="hero-title" className="mt-6 text-[46px] font-black text-navy xl:text-[54px]">
+              <span className="block font-black text-blue">STARTLINE —</span>
               {hero.title}
             </h1>
+            <Squiggle className="mt-3 h-4 w-48" color="#FF9C86" />
           </Reveal>
           <Reveal delay={0.16}>
             <p className="mt-6 max-w-[470px] text-[17px] leading-relaxed text-muted">{hero.subtitle}</p>
@@ -48,12 +53,12 @@ export function DesktopHero({ image }: { image: SiteImage | null }) {
           </Reveal>
           <Reveal delay={0.32}>
             <ul className="mt-11 grid max-w-[520px] grid-cols-2 gap-3">
-              {hero.facts.map(({ icon: Icon, value, label }) => (
+              {hero.facts.map(({ icon: Icon, value, label, tone }) => (
                 <li
                   key={label}
-                  className="flex items-center gap-3 rounded-[20px] border border-navy/[0.07] bg-white/75 px-4 py-3 shadow-[0_8px_24px_-20px_rgb(36_52_83/0.5)] backdrop-blur"
+                  className="flex items-center gap-3 rounded-[22px] border-2 border-white bg-white/85 px-4 py-3 shadow-[0_8px_24px_-18px_rgb(36_52_83/0.45)]"
                 >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-blue-soft text-blue">
+                  <span className={cn("flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px]", tone)}>
                     <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
                   </span>
                   <span className="min-w-0 leading-tight">
@@ -68,13 +73,16 @@ export function DesktopHero({ image }: { image: SiteImage | null }) {
 
         <div className="relative col-span-6 flex justify-end">
           <Trajectory
-            className="absolute -left-24 -top-6 z-10 h-[150px] w-[300px] text-blue/45"
+            className="absolute -left-24 -top-6 z-10 h-[150px] w-[300px] text-coral"
             d="M6 140C70 60 170 18 296 14"
             viewBox="0 0 300 150"
           />
           <Reveal delay={0.12} y={32} className="relative w-full" style={{ maxWidth: Math.min(540, Math.round(600 * frameRatio(image))) }}>
             <Blob variant={0} className="absolute -bottom-10 -left-12 h-[300px] w-[330px] text-pistachio/70" />
-            <div className="absolute -right-5 -top-5 h-36 w-36 rounded-full border border-dashed border-blue/35" aria-hidden="true" />
+            <Rainbow className="absolute -left-20 top-[30%] w-44 -rotate-[24deg]" />
+            <Sun className="absolute -right-12 -top-12 z-10 h-36 w-36" />
+            <Balloon className="float-soft absolute -right-14 bottom-[22%] z-10 h-28 w-14" color="#B9A6F2" />
+            <Star className="wiggle absolute -left-6 -top-2 z-10 h-9 w-9" />
             <Photo
               image={image}
               alt="Детский сад STARTLINE"
@@ -85,8 +93,8 @@ export function DesktopHero({ image }: { image: SiteImage | null }) {
               aspect={frameRatio(image)}
               className="relative w-full bg-milk-deep shadow-soft"
             />
-            <div className="float-soft absolute -right-4 top-[18%] flex h-[118px] w-[118px] flex-col items-center justify-center rounded-full bg-pistachio text-navy shadow-card">
-              <span className="font-heading text-[40px] font-semibold leading-none">{site.meals}</span>
+            <div className="float-soft absolute -right-6 top-[34%] z-10 flex h-[112px] w-[112px] rotate-6 flex-col items-center justify-center rounded-[38%_62%_55%_45%/50%_45%_55%_50%] bg-pistachio text-navy shadow-card">
+              <span className="font-heading text-[40px] font-black leading-none">{site.meals}</span>
               <span className="mt-1 text-center text-[11px] font-bold uppercase leading-tight tracking-wide">
                 разовое
                 <br />
@@ -94,9 +102,11 @@ export function DesktopHero({ image }: { image: SiteImage | null }) {
               </span>
             </div>
             <div className="absolute -left-10 bottom-[12%] flex items-center gap-3 rounded-[22px] bg-white px-5 py-4 shadow-soft">
-              <StartTicks className="h-3 w-12 text-blue" />
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-sun text-navy">
+                <Clock3 className="h-5 w-5" aria-hidden="true" />
+              </span>
               <span className="leading-tight">
-                <span className="block font-heading text-[18px] font-semibold text-navy">{site.hours.display}</span>
+                <span className="block font-heading text-[18px] font-black text-navy">{site.hours.display}</span>
                 <span className="text-[12.5px] text-muted">режим работы</span>
               </span>
             </div>

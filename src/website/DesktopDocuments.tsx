@@ -2,6 +2,7 @@ import { ArrowUpRight, FileText, FolderOpen, Phone } from "lucide-react";
 import { docs } from "@/config/content";
 import { documents, site } from "@/config/site";
 import { Eyebrow } from "@/components/Decor";
+import { Cloud, Star } from "@/components/Kids";
 import { Reveal } from "@/components/Reveal";
 import { btn } from "@/components/ui";
 import { cn } from "@/lib/cn";
@@ -10,11 +11,13 @@ import { Container } from "./Container";
 export function DesktopDocuments() {
   return (
     <section id="documents" aria-labelledby="documents-title" className="px-5">
-      <div className="mx-auto max-w-[1340px] rounded-[56px] bg-milk-deep py-20">
+      <div className="relative mx-auto max-w-[1340px] overflow-hidden rounded-[56px] bg-sun-soft py-20">
+        <Cloud className="drift absolute right-[10%] top-8 h-14 w-24" />
+        <Star className="wiggle absolute bottom-10 left-[44%] h-8 w-8" color="#FF9C86" />
         <Container className="grid grid-cols-12 items-start gap-12">
           <Reveal className="col-span-5">
             <Eyebrow index="06">{docs.eyebrow}</Eyebrow>
-            <h2 id="documents-title" className="mt-5 text-[36px] font-medium xl:text-[40px]">
+            <h2 id="documents-title" className="mt-5 text-[36px] font-black xl:text-[40px]">
               {docs.title}
             </h2>
             <p className="mt-5 max-w-[420px] text-[16px] leading-relaxed text-muted">{docs.text}</p>
@@ -58,9 +61,9 @@ export function DesktopDocuments() {
                 })}
               </ul>
             ) : (
-              <div className="relative flex items-center gap-8 overflow-hidden rounded-[40px_40px_40px_12px] border-2 border-dashed border-navy/12 bg-white/60 p-9">
+              <div className="relative flex items-center gap-8 overflow-hidden rounded-[40px_40px_40px_12px] border-[3px] border-dashed border-sun bg-white/80 p-9">
                 <div className="relative h-[120px] w-[104px] shrink-0" aria-hidden="true">
-                  <span className="absolute left-5 top-0 h-[104px] w-[80px] rotate-6 rounded-[18px] bg-pistachio-soft" />
+                  <span className="absolute left-5 top-0 h-[104px] w-[80px] rotate-6 rounded-[18px] bg-coral-soft" />
                   <span className="absolute left-0 top-3 flex h-[104px] w-[80px] -rotate-3 flex-col gap-2 rounded-[18px] bg-white p-4 shadow-card">
                     <FileText className="h-6 w-6 text-blue" />
                     <span className="mt-2 h-1.5 w-full rounded bg-navy/10" />

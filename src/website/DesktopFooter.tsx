@@ -1,11 +1,14 @@
 import { nav } from "@/config/site";
 import { contactRows } from "@/components/contacts";
+import { Star, Wave } from "@/components/Kids";
 import { Logo } from "@/components/Logo";
 import { Container } from "./Container";
 
 export function DesktopFooter() {
   return (
-    <footer className="bg-navy pb-10 pt-16 text-white">
+    <footer className="relative mt-6 bg-navy pb-10 pt-16 text-white">
+      <Wave fill="#243453" className="absolute inset-x-0 top-0 -translate-y-full" />
+      <Star className="wiggle absolute right-[8%] top-12 h-7 w-7" />
       <Container>
         <div className="grid grid-cols-12 gap-10">
           <div className="col-span-4">
@@ -17,7 +20,7 @@ export function DesktopFooter() {
             </p>
           </div>
           <nav aria-label="Навигация в подвале" className="col-span-3">
-            <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-pistachio">Разделы</p>
+            <p className="text-[15px] font-extrabold text-sun">Разделы</p>
             <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-2.5 text-[14.5px]">
               {nav.map((item) => (
                 <li key={item.id}>
@@ -29,7 +32,7 @@ export function DesktopFooter() {
             </ul>
           </nav>
           <div className="col-span-5">
-            <p className="text-[12px] font-bold uppercase tracking-[0.14em] text-pistachio">Контакты</p>
+            <p className="text-[15px] font-extrabold text-sun">Контакты</p>
             <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-4">
               {contactRows.map(({ key, icon: Icon, label, value, href, external }) => (
                 <li key={key} className="flex gap-3">

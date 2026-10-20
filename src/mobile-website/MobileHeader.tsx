@@ -54,7 +54,7 @@ export function MobileHeader() {
     >
       <div className="mx-auto flex h-16 max-w-[640px] items-center justify-between px-[18px]">
         <a href={`#${mid("top")}`} aria-label="STARTLINE — на главную" onClick={() => setOpen(false)} className="rounded-xl">
-          <Logo className="[&_svg]:h-8 [&_svg]:w-8 [&>span:last-child]:text-[15px]" />
+          <Logo className="[&_svg]:h-8 [&_svg]:w-8 [&>span:last-child]:text-[18px]" />
         </a>
         <div className="flex items-center gap-2">
           <a
@@ -100,7 +100,7 @@ export function MobileHeader() {
                       onClick={() => setOpen(false)}
                       className="flex items-center gap-4 py-3.5 text-[19px] font-semibold text-navy"
                     >
-                      <span className="w-6 font-heading text-[12px] font-semibold text-blue tabular-nums">0{i + 1}</span>
+                      <span className="w-6 font-heading text-[12px] font-black text-blue tabular-nums">0{i + 1}</span>
                       {item.label}
                     </a>
                   </li>
