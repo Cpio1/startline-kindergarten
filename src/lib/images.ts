@@ -44,11 +44,13 @@ function readImage(dir: string, fileName: string): ImageFile | null {
     // EXIF orientations 5–8 mean the photo is displayed rotated by 90°.
     const rotated = orientation !== undefined && orientation >= 5 && orientation <= 8;
     const urlDir = path.relative(PUBLIC_DIR, dir).split(path.sep).filter(Boolean).join("/");
+    const hash = createHash("sha1").update(buffer).digest("hex");
     return {
-      src: `/${urlDir ? `${urlDir}/` : ""}${encodeURIComponent(fileName)}`,
+      // The content hash busts browser and image-optimizer caches when a photo is replaced under the same name.
+      src: `/${urlDir ? `${urlDir}/` : ""}${encodeURIComponent(fileName)}?v=${hash.slice(0, 8)}`,
       width: rotated ? height : width,
       height: rotated ? width : height,
-      hash: createHash("sha1").update(buffer).digest("hex"),
+      hash,
     };
   } catch {
     // Unreadable or corrupt file — skip it instead of rendering a broken image.

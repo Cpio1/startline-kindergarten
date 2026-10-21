@@ -18,13 +18,16 @@ import { cn } from "@/lib/cn";
 import { Container } from "./Container";
 
 const INITIAL = 5;
+/** Justified rows: tiles start at BASE px tall, grow to fill the row and never exceed MAX — keeps the section compact. */
+const BASE_HEIGHT = 220;
+const MAX_HEIGHT = 280;
+const GAP = 16;
 
-const ratio = (image: SiteImage) => Math.min(1.4, Math.max(0.75, image.width / image.height));
+const ratio = (image: SiteImage) => image.width / image.height;
 
 export function DesktopGallery({ images }: { images: SiteImage[] }) {
   const [expanded, setExpanded] = useState(false);
   const [open, setOpen] = useState<number | null>(null);
-  const visible = expanded ? images : images.slice(0, INITIAL);
   const hidden = images.length - INITIAL;
 
   return (
@@ -67,45 +70,23 @@ export function DesktopGallery({ images }: { images: SiteImage[] }) {
           </div>
         ) : (
           <>
-            <ul className="mt-12 columns-3 gap-5 [&>li]:mb-5">
-              <AnimatePresence initial={false}>
-                {visible.map((image, i) => (
-                  <m.li
-                    key={image.src}
-                    className="break-inside-avoid"
-                    initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 12 }}
-                    transition={{ duration: 0.55, delay: i >= INITIAL ? (i - INITIAL) * 0.05 : 0, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpen(i)}
-                      aria-label={`Открыть фотографию ${i + 1} из ${images.length}`}
-                      className="group relative block w-full overflow-hidden border-[5px] border-white bg-white shadow-card"
-                      style={{ borderRadius: blobs[galleryShapes[i % galleryShapes.length]] }}
-                    >
-                      <span className="relative block w-full" style={{ aspectRatio: ratio(image) }}>
-                        <Image
-                          src={image.src}
-                          alt={`Фотография детского сада STARTLINE ${i + 1}`}
-                          fill
-                          sizes="(min-width: 1280px) 380px, 31vw"
-                          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                        />
-                      </span>
-                      <span className="absolute inset-0 flex items-end justify-end bg-gradient-to-t from-navy/40 via-transparent p-5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
-                        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-navy">
-                          <Expand className="h-4 w-4" aria-hidden="true" />
-                        </span>
-                      </span>
-                    </button>
-                  </m.li>
-                ))}
-              </AnimatePresence>
-            </ul>
+            <GalleryRow images={images.slice(0, INITIAL)} offset={0} total={images.length} onOpen={setOpen} className="mt-10" />
+            <AnimatePresence initial={false}>
+              {expanded && (
+                <m.div
+                  key="more"
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="-mx-3 overflow-hidden px-3"
+                >
+                  <GalleryRow images={images.slice(INITIAL)} offset={INITIAL} total={images.length} onOpen={setOpen} className="pt-4 pb-2" stagger />
+                </m.div>
+              )}
+            </AnimatePresence>
             {hidden > 0 && (
-              <div className="mt-6 flex justify-center">
+              <div className="mt-7 flex justify-center">
                 <button
                   type="button"
                   onClick={() => setExpanded((value) => !value)}
@@ -122,5 +103,62 @@ export function DesktopGallery({ images }: { images: SiteImage[] }) {
       </Container>
       <Lightbox images={images} index={open} onChange={setOpen} />
     </section>
+  );
+}
+
+function GalleryRow({
+  images,
+  offset,
+  total,
+  onOpen,
+  className,
+  stagger = false,
+}: {
+  images: SiteImage[];
+  offset: number;
+  total: number;
+  onOpen: (index: number) => void;
+  className?: string;
+  stagger?: boolean;
+}) {
+  return (
+    <ul className={cn("flex flex-wrap justify-center", className)} style={{ gap: GAP }}>
+      {images.map((image, i) => {
+        const index = offset + i;
+        const r = ratio(image);
+        return (
+          <m.li
+            key={image.src}
+            style={{ flexGrow: r, flexBasis: r * BASE_HEIGHT, maxWidth: r * MAX_HEIGHT }}
+            initial={stagger ? { opacity: 0, y: 18 } : false}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: stagger ? Math.min(i, 8) * 0.04 : 0, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <button
+              type="button"
+              onClick={() => onOpen(index)}
+              aria-label={`Открыть фотографию ${index + 1} из ${total}`}
+              className="group relative block w-full overflow-hidden border-[5px] border-white bg-white shadow-card"
+              style={{ borderRadius: blobs[galleryShapes[index % galleryShapes.length]] }}
+            >
+              <span className="relative block w-full" style={{ aspectRatio: r }}>
+                <Image
+                  src={image.src}
+                  alt={`Фотография детского сада STARTLINE ${index + 1}`}
+                  fill
+                  sizes={`${Math.ceil(r * MAX_HEIGHT)}px`}
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                />
+              </span>
+              <span className="absolute inset-0 flex items-end justify-end bg-gradient-to-t from-navy/40 via-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-navy">
+                  <Expand className="h-4 w-4" aria-hidden="true" />
+                </span>
+              </span>
+            </button>
+          </m.li>
+        );
+      })}
+    </ul>
   );
 }

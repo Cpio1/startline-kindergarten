@@ -86,6 +86,8 @@ export function MobileGallery({ images }: { images: SiteImage[] }) {
                         fill
                         sizes="(max-width: 640px) 46vw, 300px"
                         className="object-cover"
+                        // Tall phone shots: keep the upper part, where faces usually are, inside the square-ish tile.
+                        style={{ objectPosition: image.height > image.width * 1.2 ? "50% 28%" : "50% 50%" }}
                       />
                     </button>
                   </m.li>
