@@ -24,7 +24,7 @@ export function MobileSite({ data }: { data: SiteData }) {
         <MobileGroups />
         <MobileNutrition />
         <MobileGallery images={data.gallery} />
-        <MobileDocuments />
+        <MobileDocuments documents={data.documents} />
         <MobileContacts />
       </main>
       <MobileFooter />

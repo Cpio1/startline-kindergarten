@@ -24,7 +24,7 @@ export function DesktopSite({ data }: { data: SiteData }) {
         <DesktopGroups />
         <DesktopNutrition />
         <DesktopGallery images={data.gallery} />
-        <DesktopDocuments />
+        <DesktopDocuments documents={data.documents} />
         <DesktopContacts />
       </main>
       <DesktopFooter />

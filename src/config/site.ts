@@ -57,18 +57,11 @@ export const nav = [
   { id: "contacts", label: "Контакты" },
 ] as const;
 
-export type DocumentItem = {
-  title: string;
-  /** "pdf" — a file in /public/documents, "drive" — a Google Drive link. */
-  kind: "pdf" | "drive";
-  href: string;
-  note?: string;
-};
-
 /**
- * Official documents. Empty until the kindergarten provides them — never add placeholders.
- * Examples:
- *   { title: "Устав", kind: "pdf", href: "/documents/ustav.pdf" }
- *   { title: "Договор", kind: "drive", href: "https://drive.google.com/file/d/…/view" }
+ * Public Google Drive folder with the official documents. The file list is read from Google's
+ * public folder view on the server (no API key); file names are never written by hand here.
  */
-export const documents: DocumentItem[] = [];
+export const documentsFolder = {
+  id: "1Z2QUjRA0DBZ3gAJqvfTtYpCngjQ6HIi6",
+  url: "https://drive.google.com/drive/folders/1Z2QUjRA0DBZ3gAJqvfTtYpCngjQ6HIi6",
+};
