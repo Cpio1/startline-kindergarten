@@ -10,7 +10,6 @@ import { MobileContainer } from "./MobileContainer";
 const cards = [
   { tone: "bg-coral-soft text-navy", art: "text-coral-deep", radius: "26px 26px 26px 10px" },
   { tone: "bg-blue text-white", art: "text-pistachio", radius: "10px 26px 26px 26px" },
-  { tone: "bg-sun-soft text-navy", art: "text-sun-deep", radius: "26px 10px 26px 26px" },
 ] as const;
 
 export function MobileGroups() {
@@ -43,7 +42,7 @@ export function MobileGroups() {
                   <h3 className="text-[17px] font-black">{name}</h3>
                   <p className="mt-0.5 whitespace-nowrap text-[11.5px] font-bold opacity-60">временное название</p>
                 </div>
-                <GroupArt level={(i + 1) as 1 | 2 | 3} className={cn("h-[40px] w-[64px] shrink-0 min-[360px]:h-[48px] min-[360px]:w-[88px]", card.art)} />
+                <GroupArt level={(i + 1) as 1 | 2} className={cn("h-[40px] w-[64px] shrink-0 min-[360px]:h-[48px] min-[360px]:w-[88px]", card.art)} />
               </Reveal>
             );
           })}

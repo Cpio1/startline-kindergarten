@@ -31,7 +31,7 @@ export default function OpengraphImage() {
         </div>
         <div style={{ display: "flex", fontSize: 46, marginTop: 36, maxWidth: 760 }}>Первый шаг к большому будущему</div>
         <div style={{ display: "flex", fontSize: 30, marginTop: 24, color: "#5D6882" }}>
-          Детский сад · от 1,5 до 6 лет · 3 группы · 08:00–18:00
+          Детский сад · от 1,5 до 6 лет · 2 группы · 08:00–18:00
         </div>
       </div>
     ),

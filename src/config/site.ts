@@ -6,15 +6,15 @@ export const site = {
   name: "STARTLINE",
   address: "ул. Ходжанова, 48Г",
   phone: {
-    display: "8 801 255 98 99",
-    tel: "88012559899",
+    display: "8 801 255 9899",
+    tel: "+78012559899",
   },
   instagram: {
     handle: "@startline.sadik",
     url: "https://www.instagram.com/startline.sadik/",
   },
   hours: { opens: "08:00", closes: "18:00", display: "08:00–18:00" },
-  groups: 3,
+  groups: 2,
   ages: { from: "1,5", to: "6", display: "от 1,5 до 6 лет" },
   language: "русский",
   meals: 5,
@@ -44,7 +44,7 @@ export const SITE_URL =
 export const meta = {
   title: "STARTLINE — детский сад: первый шаг к большому будущему",
   description:
-    "Детский сад STARTLINE: дети от 1,5 до 6 лет, 3 группы, обучение на русском языке, 5-разовое питание, режим работы 08:00–18:00. ул. Ходжанова, 48Г.",
+    "Детский сад STARTLINE: дети от 1,5 до 6 лет, 2 группы, обучение на русском языке, 5-разовое питание, режим работы 08:00–18:00. ул. Ходжанова, 48Г.",
 };
 
 export const nav = [

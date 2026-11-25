@@ -1,6 +1,6 @@
 import { Flower, Star, Sun } from "./Kids";
 
-/** Three take-offs from the same start line, each climbing a little higher and ending in a figure. */
+/** Take-offs from the same start line, each climbing a little higher and ending in a figure. */
 export function GroupArt({ level, className }: { level: 1 | 2 | 3; className?: string }) {
   const peak = [92, 62, 30][level - 1];
   const End = [Flower, Star, Sun][level - 1];

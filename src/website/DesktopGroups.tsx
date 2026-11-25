@@ -10,7 +10,6 @@ import { Container } from "./Container";
 const cards = [
   { tone: "bg-coral-soft text-navy", art: "text-coral-deep", offset: "", radius: "40px 40px 40px 12px" },
   { tone: "bg-blue text-white", art: "text-pistachio", offset: "mt-12", radius: "12px 40px 40px 40px" },
-  { tone: "bg-sun-soft text-navy", art: "text-sun-deep", offset: "mt-6", radius: "40px 12px 40px 40px" },
 ] as const;
 
 export function DesktopGroups() {
@@ -31,7 +30,7 @@ export function DesktopGroups() {
           </p>
         </Reveal>
 
-        <ol className="col-span-8 grid grid-cols-3 items-start gap-5">
+        <ol className="col-span-8 grid grid-cols-2 items-start gap-6">
           {groups.items.map((name, i) => {
             const card = cards[i];
             return (
@@ -50,7 +49,7 @@ export function DesktopGroups() {
                     ))}
                   </span>
                 </div>
-                <GroupArt level={(i + 1) as 1 | 2 | 3} className={cn("mt-8 h-auto w-full", card.art)} />
+                <GroupArt level={(i + 1) as 1 | 2} className={cn("mx-auto mt-8 h-auto w-full max-w-[300px]", card.art)} />
                 <div className="mt-auto pt-8">
                   <h3 className="text-[26px] font-black">{name}</h3>
                   <p className="mt-1.5 text-[13px] font-bold opacity-60">временное название</p>
